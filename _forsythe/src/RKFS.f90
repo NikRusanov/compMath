@@ -95,11 +95,8 @@ SUBROUTINE RKFS(F, NEQN, Y, T, TOUT, RELERR, ABSERR, IFLAG, &
    !     ЗOBATEЛЬ HE BЫПOЛHИЛ ИHCTPУKЦИЙ,COOTBETCTBУЮЩИX
    !     ЗHAЧEHИЯM IFLAG=5,6,7 ИЛИ 8
    !
-   30 PRINT 35
-   35 FORMAT(/20X, 48HИHTEГPИPOBAHИE ПPEPBAHO, ПOCKOЛЬKУ ПOЛЬЗOBATEЛЬ, &
-   11HHE BЫПOЛHИЛ/20X, 34HИHCTPУKЦИЙ RKF45, COOTBETCTBУЮЩИX, &
-   27HЗHAЧEHИЯM IFLAG=5, 6, 7 ИЛИ 8)
-   STOP
+
+   30 STOP
    !
    !     ПEPEOПPEДEЛИTЬ CЧETЧИK ЧИCЛA BЫЧИCЛEHИЙ ФУHKЦИИ
    !
@@ -193,7 +190,7 @@ SUBROUTINE RKFS(F, NEQN, Y, T, TOUT, RELERR, ABSERR, IFLAG, &
    !     HЫX TOЧEK
    !
    IF(ABS(H)>=2.0 * ABS(DT))KOP = KOP + 1
-   IF(KOP/=100)GO TO 85
+   IF(KOP/=100) GO TO 85
    !
    !     ЧPEЗMEPHAЯ ЧACTOTA BЫXOДOB
    !
@@ -201,7 +198,7 @@ SUBROUTINE RKFS(F, NEQN, Y, T, TOUT, RELERR, ABSERR, IFLAG, &
    IFLAG = 7
    RETURN
    !
-   85 IF(ABS(DT)>U26 * ABS(T))GO TO 95
+   85 IF(ABS(DT)>U26 * ABS(T)) GO TO 95
    !
    !     ECЛИ OЧEHЬ БЛИЗKO K TOЧKE BЫXOДA,ПPOЭKCTPAПO-
    !     ЛИPOBATЬ И BEPHУTЬCЯ ПO MECTУ BЫЗOBA
