@@ -1,8 +1,7 @@
       subroutine orbit(t,y,yp)
-	  !меняем 4 на 2.
+!меняем 4 на 2.
       real t,y(2),yp(2)
-		
-		!вот это два твоих уравнения. у(1) - это х1, у(2) - х2
+        ! у(1) = х1, у(2) =  х2
       yp(1)=-430*y(1)-12000 * y(2)+exp(-10.0*t)
       yp(2)=y(1)+LOG(1.0 + 100*t*t)
 
@@ -10,31 +9,30 @@
       end
 
       external orbit
-	  !меняем 4 на 2
+        !enter args 
       real t,y(2),tout,relerr,abserr, tfinal,tprint,ecc,work(27)
-	  
       integer iwork(5),iflag,neqn
       neqn=2
-	  !начальное значение т из tЕ[что-то там, что-то там]
+      !t0
       t=0.0000
-	  !значения х1 и х2 в т0
+      !x0 and x1 
       y(1)=3.0
       y(2)=-1.0
-		!это твой EPS
+		!EPS
       relerr=1e-04
       abserr=0.0
-	  !конечная точка из tЕ[что-то там, что-то там]
-      tfinal=0.15
+	  !final t last
+      tfinal=0.15000
 	  !шаг печати
       tprint=0.0075
-      iflag=1
+      iflag=1 
       tout=t
    10 call rkf45(orbit,neqn,y,t,tout,relerr,abserr, iflag,work,iwork)
-   !выкидываем у3 и у4
       print 11,t,y(1),y(2), iflag
       go to (80,20,30,40,50,60,70,80),iflag
-   20 tout = tprint+t
-      if(t.lt.tfinal) go to 10
+      !call rk if t final > current t 
+   20 tout = tprint + t
+      if(tout < tfinal) go to 10
       stop
    30 print 31,relerr,abserr
       go to 10
