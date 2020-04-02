@@ -1,2 +1,2 @@
           result=           NaN   errest=         NaN
-           NOFUN=    4113           flag=   151.000
+           NOFUN=    3985           flag=   127.000
