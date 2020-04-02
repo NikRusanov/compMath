@@ -1,0 +1,2 @@
+          result=           NaN   errest=         NaN
+           NOFUN=    4113           flag=   151.000

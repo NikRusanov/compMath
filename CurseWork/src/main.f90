@@ -1,3 +1,4 @@
+
       subroutine orbit(t,y,yp)
 !меняем 4 на 2.
       real t,y(2),yp(2)
