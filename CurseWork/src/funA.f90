@@ -1,6 +1,6 @@
 real function fun(z)
     real z 
-    fun = (1.0 - exp(-0.8*z))/(z*(1+1.6*z))
+    fun = ((1.0 - exp(-0.8*z))/(z*(1+1.6*z)))
     return
 end 
 
