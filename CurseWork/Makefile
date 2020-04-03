@@ -1,6 +1,6 @@
 FC=gfortran
-FFLAGS=-Wall -std=f2008ts -fimplicit-none -Wno-maybe-uninitialized 
-FOPT=-O3 
+FFLAGS=-Wall -fimplicit-none  -std=f2008ts -Wno-maybe-uninitialized 
+FOPT=-O0 
 DIR=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 all: clean build run
 
@@ -14,8 +14,9 @@ build:
 	$(FC) $(FFLAGS) -c "$(DIR)/../_forsythe/src/RKFS.f90" -I "$(DIR)/obj/" -o "$(DIR)/obj/RKFS.o"
 	$(FC) $(FFLAGS) -c "$(DIR)/../_forsythe/src/FEHL.f90" -I "$(DIR)/obj/" -o "$(DIR)/obj/FEHL.o"
 	$(FC) $(FFLAGS) -c "$(DIR)/../_forsythe/src/QUANC8.f90" -I "$(DIR)/obj/" -o "$(DIR)/obj/QUANC8.o"
-	$(FC) $(FFLAGS) $(FOPT) -c "$(DIR)/src/funA.f90" -I "$(DIR)/obj/" -o "$(DIR)/obj/main.o"
-	$(FC) $(FFLAGS) $(FOPT) -o "$(DIR)/bin/app" "$(DIR)/obj/environment.o" "$(DIR)/obj/RKF45.o" "$(DIR)/obj/RKFS.o" "$(DIR)/obj/FEHL.o" "$(DIR)/obj/QUANC8.o" "$(DIR)/obj/main.o"	
+	$(FC) $(FFLAGS) -c "$(DIR)/../_forsythe/src/ZEROIN.f90" -I "$(DIR)/obj/" -o "$(DIR)/obj/ZEROIN.o"
+	$(FC) $(FFLAGS) $(FOPT) -c "$(DIR)/src/funA.f90" -I "$(DIR)/obj/" -o "$(DIR)/obj/funA.o"
+	$(FC) $(FFLAGS) $(FOPT) -o "$(DIR)/bin/app" "$(DIR)/obj/environment.o" "$(DIR)/obj/RKF45.o" "$(DIR)/obj/RKFS.o" "$(DIR)/obj/FEHL.o" "$(DIR)/obj/QUANC8.o"  "$(DIR)/obj/ZEROIN.o" "$(DIR)/obj/funA.o"	
 run:
 		cd ./bin; ./app >> output.txt;
 		cat ./bin/output.txt

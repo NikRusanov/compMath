@@ -1,2 +1,4 @@
-          result=           NaN   errest=         NaN
-           NOFUN=    3985           flag=   127.000
+          result= 0.4087459E+00   errest= 0.29249E-07
+           NOFUN=     193           flag=     0.000
+          resultA =    0.13250E-23
+          result B =  0.4000001E-01
