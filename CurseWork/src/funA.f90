@@ -15,15 +15,26 @@ end
 
 program main 
 external functionB, functionA, ZEROIN
-integer NOFUN,i
+integer NOFUN,i,j
 
 
 !vars for quanc
-real resA,funictonA,interval_a,interval_b,rellerr,abserr,flag,errest,result
+real                    :: resA,funictonA,interval_a,interval_b,rellerr,abserr,flag,errest,result
 
 !vars for zeroin 
-real resB,functionB,AX,BX,TOL,ZEROIN
+real                    ::resB,functionB,AX,BX,TOL,ZEROIN
 
+
+!vars for decomp,solve
+real                    ::   A(3,3),B(3), WORK(3),COND
+integer                 :: NDIM, N, IPTV(3), In 
+character(*), parameter :: input_file= "../data/input.txt", output_file = "output.txt"
+N = 3 
+NDIM = 3 
+open(file=input_file, newunit=In)
+    read(In,*) (A(:,i),i=1,N)
+    read(In,*) (B(i), i=1,N)
+close (In)
     !calclulate A
     interval_a = 1.e-06 !! divide by zero 
     interval_b = 1.0
@@ -48,7 +59,29 @@ real resB,functionB,AX,BX,TOL,ZEROIN
    print 3,resB
 
 
+
+   !calculate system 
+   write(*,*) "params:"
+   write (*,*) "A is  "
+   write(*,4) (A(:,j),j=1,N) 
+   
+   write (*,*) "B is  "
+   write(*,4) B
+
+   !CALCULATE SYSTEM 
+   call decomp(NDIM,N,A,COND, IPTV,WORK)
+   write(*,5) COND
+   call SOLVE(NDIM,N,A,B,IPTV)
+   write(*,7)
+   write(*,6) B(:)
+!====================================================================================
+!=============================OUTPUT FORMATS=========================================
+!==================================================================================== 
     1 format(10x,'result=',e14.7,3x,'errest=',e12.5/11x,'NOFUN=',i8,11x,'flag=',f10.3)
     2 format(10x,'resultA = ',e14.5,3x)
     3 format (10x,'result B = ', e14.7,3x)
+    4 format (3x,f10.3, f10.3, f10.3)
+    5 format (5x,'COND = ', e12.5)
+    6 format (5x, 3(4x, F10.7))
+    7 format (14x, 'k',14x,'q',14x,'t')
     end program
