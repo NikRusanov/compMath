@@ -1,27 +1,26 @@
-!Function for A
+!Function for const A
 real function functionA(z)
     real z 
     functionA = ((1.0 - exp(-0.8*z))/(z*(1 + 1.6 * z)))
     return
 end 
-!Function for B 
+!Function for const B 
 real  function functionB(x)
     real x
     functionB = 1 + x - exp(0.75*x)
     return
 end
-!dif system
+!===================== system =====================
         subroutine spring_vibration (t, w, yp)
             real t, w(2), yp(2)
             real q, k
-            !TO DO read in param ? file 
+            !TO DO input params  
             q = 4.0 
             k = 5.0 
-            yp(1)=w(1)
-            yp(2)=(-q/(4*k**2))*((1-k**2)*w(2)+2*k**2*w(2)**3)
+            yp(1)=(-q/(4*k**2))*((1-k**2)*w(2)+2*k**2*w(2)**3)
+            yp(2)=w(1)
             return
         end
-
 program main 
 external functionB, functionA, ZEROIN, spring_vibration
 integer NOFUN,i,j
@@ -72,7 +71,7 @@ open(file=output_file, newunit=Out)
     !calculate B 
     AX  = 0.5
     BX  = 0.8 
-    TOL = 1.0E-7
+    TOL = 1.0E-6
 
    resB = ZEROIN(AX, BX, functionB, TOL)
    resB = resB * 0.05452555
@@ -94,7 +93,6 @@ open(file=output_file, newunit=Out)
    call SOLVE(NDIM,N,A,B,IPTV)
    write(Out,7)
    write(Out,6) B(:)
-close(Out)
 ! ======== B(1) = k B(2) = q B(3) = T========
 ! TODO rename B(3) !!!
 
@@ -104,36 +102,39 @@ close(Out)
 neqn = 2 
 w(1) = resB
 w(2) = resA
-t = 0.0 
+t = 0.000001 
 q = B(1)
 k = B(2)
-tfinal = B(3)
+tfinal = 30
 iflag = 1 
 tout = t 
-tprint = 0.5 
+tprint = 0.5
 
 !calculate RKF 
 10 call RKF45(spring_vibration,neqn,w,t,tout,relerr,abserr,iflag,rwork,iwork)
-        print 11,t,w(1),w(2)
+        write (Out,11) t,w(1),w(2)
         go to (80,20,30,40,50,60,70,80),iflag
 20 tout=tprint + t
         if(t.lt.tfinal) go to 10
         stop
-30 print 31,relerr,abserr
+30 write( Out,31)relerr,abserr
       go to 10
-40 print 41
+40 write (Out, 41)
       go to 10
 50 abserr=0.1e-07
-      print 31,relerr,abserr
+      write (Out, 31) relerr,abserr
       go to 10
 60 relerr=relerr*10.0
-      print 31,relerr,abserr
+      write (Out, 31) relerr,abserr
       iflag=2
       go to 10
 70 print 71
       iflag=2
       go to 10
-80 print 81
+80 write (Out, 81)
+
+
+close(Out)
       stop
 !====================================================================================
 !=============================OUTPUT FORMATS=========================================
