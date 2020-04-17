@@ -1,0 +1,89 @@
+rm -rf obj/*
+rm -rf bin/*
+gfortran -Wall -fimplicit-none  -std=f2008ts -Wno-maybe-uninitialized  -c "/home/nik/Документы/CompMath/compMath/CurseWork/../environment_x64.f90" -J "/home/nik/Документы/CompMath/compMath/CurseWork/obj/" -o "/home/nik/Документы/CompMath/compMath/CurseWork/obj/environment.o"
+gfortran -Wall -fimplicit-none  -std=f2008ts -Wno-maybe-uninitialized  -c "/home/nik/Документы/CompMath/compMath/CurseWork/../_forsythe/src/RKF45.f90" -I "/home/nik/Документы/CompMath/compMath/CurseWork/obj/" -o "/home/nik/Документы/CompMath/compMath/CurseWork/obj/RKF45.o"
+gfortran -Wall -fimplicit-none  -std=f2008ts -Wno-maybe-uninitialized  -c "/home/nik/Документы/CompMath/compMath/CurseWork/../_forsythe/src/RKFS.f90" -I "/home/nik/Документы/CompMath/compMath/CurseWork/obj/" -o "/home/nik/Документы/CompMath/compMath/CurseWork/obj/RKFS.o"
+gfortran -Wall -fimplicit-none  -std=f2008ts -Wno-maybe-uninitialized  -c "/home/nik/Документы/CompMath/compMath/CurseWork/../_forsythe/src/FEHL.f90" -I "/home/nik/Документы/CompMath/compMath/CurseWork/obj/" -o "/home/nik/Документы/CompMath/compMath/CurseWork/obj/FEHL.o"
+gfortran -Wall -fimplicit-none  -std=f2008ts -Wno-maybe-uninitialized  -c "/home/nik/Документы/CompMath/compMath/CurseWork/../_forsythe/src/QUANC8.f90" -I "/home/nik/Документы/CompMath/compMath/CurseWork/obj/" -o "/home/nik/Документы/CompMath/compMath/CurseWork/obj/QUANC8.o"
+gfortran -Wall -fimplicit-none  -std=f2008ts -Wno-maybe-uninitialized  -c "/home/nik/Документы/CompMath/compMath/CurseWork/../_forsythe/src/ZEROIN.f90" -I "/home/nik/Документы/CompMath/compMath/CurseWork/obj/" -o "/home/nik/Документы/CompMath/compMath/CurseWork/obj/ZEROIN.o"
+gfortran -Wall -fimplicit-none  -std=f2008ts -Wno-maybe-uninitialized  -c "/home/nik/Документы/CompMath/compMath/CurseWork/../_forsythe/src/DECOMP.f90" -I "/home/nik/Документы/CompMath/compMath/CurseWork/obj/" -o "/home/nik/Документы/CompMath/compMath/CurseWork/obj/DECOMP.o"
+gfortran -Wall -fimplicit-none  -std=f2008ts -Wno-maybe-uninitialized  -c "/home/nik/Документы/CompMath/compMath/CurseWork/../_forsythe/src/SOLVE.f90" -I "/home/nik/Документы/CompMath/compMath/CurseWork/obj/" -o "/home/nik/Документы/CompMath/compMath/CurseWork/obj/SOLVE.o"
+gfortran -Wall -fimplicit-none  -std=f2008ts -Wno-maybe-uninitialized  -O0  -c "/home/nik/Документы/CompMath/compMath/CurseWork/src/funA.f90" -I "/home/nik/Документы/CompMath/compMath/CurseWork/obj/" -o "/home/nik/Документы/CompMath/compMath/CurseWork/obj/funA.o"
+gfortran -Wall -fimplicit-none  -std=f2008ts -Wno-maybe-uninitialized  -O0  -o "/home/nik/Документы/CompMath/compMath/CurseWork/bin/app" "/home/nik/Документы/CompMath/compMath/CurseWork/obj/environment.o" "/home/nik/Документы/CompMath/compMath/CurseWork/obj/RKF45.o" "/home/nik/Документы/CompMath/compMath/CurseWork/obj/RKFS.o" "/home/nik/Документы/CompMath/compMath/CurseWork/obj/FEHL.o" "/home/nik/Документы/CompMath/compMath/CurseWork/obj/QUANC8.o"  "/home/nik/Документы/CompMath/compMath/CurseWork/obj/ZEROIN.o" "/home/nik/Документы/CompMath/compMath/CurseWork/obj/funA.o"	"/home/nik/Документы/CompMath/compMath/CurseWork/obj/SOLVE.o" "/home/nik/Документы/CompMath/compMath/CurseWork/obj/DECOMP.o" 
+cd ./bin; ./app
+ t=      0.00  w1=  0.040000  w2=0.13249834E-23
+ t=      0.50  w1=  0.044895  w2=0.20809447E-01
+ t=      1.00  w1=  0.060741  w2=0.46706099E-01
+ t=      1.50  w1=  0.091211  w2=0.83971247E-01
+ t=      2.00  w1=  0.142834  w2=0.14142759E+00
+ t=      2.50  w1=  0.224253  w2=0.23178609E+00
+ t=      3.00  w1=  0.339116  w2=0.37141255E+00
+ t=      3.50  w1=  0.456752  w2=0.57192802E+00
+ t=      4.00  w1=  0.449576  w2=0.80799985E+00
+ t=      4.50  w1=  0.143316  w2=0.96945804E+00
+ t=      5.00  w1= -0.297124  w2=0.92687744E+00
+ t=      5.50  w1= -0.480285  w2=0.71863008E+00
+ t=      6.00  w1= -0.416788  w2=0.48843551E+00
+ t=      6.50  w1= -0.291941  w2=0.31127644E+00
+ t=      7.00  w1= -0.189160  w2=0.19244070E+00
+ t=      7.50  w1= -0.120113  w2=0.11641417E+00
+ t=      8.00  w1= -0.077514  w2=0.67922696E-01
+ t=      8.50  w1= -0.053234  w2=0.35863772E-01
+ t=      9.00  w1= -0.041857  w2=0.12553735E-01
+ t=      9.50  w1= -0.040711  w2=-.76852413E-02
+ t=     10.00  w1= -0.049525  w2=-.29804738E-01
+ t=     10.50  w1= -0.070379  w2=-.59202220E-01
+ t=     11.00  w1= -0.108007  w2=-.10296224E+00
+ t=     11.50  w1= -0.169991  w2=-.17125881E+00
+ t=     12.00  w1= -0.264608  w2=-.27843982E+00
+ t=     12.50  w1= -0.387864  w2=-.44091794E+00
+ t=     13.00  w1= -0.479832  w2=-.66182888E+00
+ t=     13.50  w1= -0.370963  w2=-.88725710E+00
+ t=     14.00  w1=  0.034510  w2=-.98001391E+00
+ t=     14.50  w1=  0.407079  w2=-.85875791E+00
+ t=     15.00  w1=  0.473751  w2=-.62693262E+00
+ t=     15.50  w1=  0.369283  w2=-.41322744E+00
+ t=     16.00  w1=  0.248574  w2=-.25967664E+00
+ t=     16.50  w1=  0.159055  w2=-.15922888E+00
+ t=     17.00  w1=  0.101194  w2=-.95312856E-01
+ t=     17.50  w1=  0.066429  w2=-.54197758E-01
+ t=     18.00  w1=  0.047567  w2=-.26249997E-01
+ t=     18.50  w1=  0.040285  w2=-.47153379E-02
+ t=     19.00  w1=  0.042861  w2=0.15665371E-01
+ t=     19.50  w1=  0.055907  w2=0.39877474E-01
+ t=     20.00  w1=  0.082474  w2=0.73810220E-01
+ t=     20.50  w1=  0.128407  w2=0.12556255E+00
+ t=     21.00  w1=  0.202101  w2=0.20684615E+00
+ t=     21.50  w1=  0.309795  w2=0.33343571E+00
+ t=     22.00  w1=  0.433551  w2=0.51976287E+00
+ t=     22.50  w1=  0.473520  w2=0.75379735E+00
+ t=     23.00  w1=  0.242120  w2=0.94677848E+00
+ t=     23.50  w1= -0.206924  w2=0.95653212E+00
+ t=     24.00  w1= -0.466631  w2=0.77421182E+00
+ t=     24.50  w1= -0.442732  w2=0.53878450E+00
+ t=     25.00  w1= -0.320553  w2=0.34711561E+00
+ t=     25.50  w1= -0.210087  w2=0.21579003E+00
+ t=     26.00  w1= -0.133574  w2=0.13124606E+00
+ t=     26.50  w1= -0.085589  w2=0.77454843E-01
+ t=     27.00  w1= -0.057618  w2=0.42337183E-01
+ t=     27.50  w1= -0.043558  w2=0.17534509E-01
+ t=     28.00  w1= -0.040134  w2=-.29801358E-02
+ t=     28.50  w1= -0.046532  w2=-.24224143E-01
+ t=     29.00  w1= -0.064268  w2=-.51387813E-01
+ t=     29.50  w1= -0.097423  w2=-.91045223E-01
+ t=     30.00  w1= -0.152954  w2=-.15252678E+00
+cat ./bin/output.txt
+          result= 0.4087459E+00   errest= 0.29249E-07
+           NOFUN=     193           flag=     0.000
+          resultA =    0.13250E-23
+          result B =  0.4000001E-01
+ params:
+ A is  
+      441.000  -162.000  -378.000
+     -162.000   144.000   216.000
+     -378.000   216.000   414.000
+ B is  
+      423.000   414.000   216.000
+     COND =    114.28811
+              k              q              t
+          4.9999995     4.0000019     2.9999983

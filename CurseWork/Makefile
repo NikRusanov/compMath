@@ -20,7 +20,6 @@ build:
 	$(FC) $(FFLAGS) $(FOPT) -c "$(DIR)/src/funA.f90" -I "$(DIR)/obj/" -o "$(DIR)/obj/funA.o"
 	$(FC) $(FFLAGS) $(FOPT) -o "$(DIR)/bin/app" "$(DIR)/obj/environment.o" "$(DIR)/obj/RKF45.o" "$(DIR)/obj/RKFS.o" "$(DIR)/obj/FEHL.o" "$(DIR)/obj/QUANC8.o"  "$(DIR)/obj/ZEROIN.o" "$(DIR)/obj/funA.o"	"$(DIR)/obj/SOLVE.o" "$(DIR)/obj/DECOMP.o" 
 run:
-		touch ./bin/output.txt 
 		cd ./bin; ./app
 		cat ./bin/output.txt
 

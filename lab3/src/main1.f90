@@ -34,7 +34,7 @@
 
         tfinal=0.15
         tprint=0.00001
-        h=0.001
+        h=0.0001
 		
    10   call runge(t, h, y)
 		
