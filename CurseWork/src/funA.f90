@@ -16,7 +16,7 @@ end
             real q, k
             !TO DO input params  
             q = 4.0 
-            k = 5.0 
+            k = 5.0
             yp(1)=(-q/(4*k**2))*((1-k**2)*w(2)+2*k**2*w(2)**3)
             yp(2)=w(1)
             return
@@ -64,6 +64,7 @@ open(file=output_file, newunit=Out)
     call quanc8(functionA,interval_a,interval_b,abserr,relerr,result,errest,NOFUN,flag)
     write(Out,1) result,errest,NOFUN,flag
     ! find A 
+    
     resA = (result - 0.40874702)**4
     write (Out,2) resA
     
@@ -75,6 +76,9 @@ open(file=output_file, newunit=Out)
 
    resB = ZEROIN(AX, BX, functionB, TOL)
    resB = resB * 0.05452555
+
+! для оценки влияния погрешности 
+!   resB = resB * 1.05
    write (Out, 3) resB
 
 
@@ -112,7 +116,9 @@ tprint = 0.5
 
 !calculate RKF 
 10 call RKF45(spring_vibration,neqn,w,t,tout,relerr,abserr,iflag,rwork,iwork)
-        write (Out,11) t,w(1),w(2)
+        
+!plot output
+       write (Out,11) t, w(2)
         go to (80,20,30,40,50,60,70,80),iflag
 20 tout=tprint + t
         if(t.lt.tfinal) go to 10
@@ -148,8 +154,11 @@ close(Out)
     7 format (14x, 'k',14x,'q',14x,'t')
 
 
-
-    11 format(' t=',f10.2,2x,'w1=',f10.6,2x,'w2=',E14.8)
+    !DEBUG FORMAT
+    !11 format(' (',f10.2,2x,';',f10.6,2x,';',E14.8,')')
+    !11 format(f10.6,2x)
+    !format for PLOT 
+    11 format(' (',f10.2,2x,';',E14.8,')')
     31 format(' ГPAHИЦЫ ПOГPEШHOCTEЙ ИЗMEHEHЫ  '/' RELERR=',E10.3,2X,'ABSERR=',E10.3)
     41 format(' MHOГO ШAГOB ')
     71 format(' MHOГO BЫXOДOB ')
